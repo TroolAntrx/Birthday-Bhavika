@@ -70,5 +70,87 @@
         height: 80px;
         background: red;
         border-radius: 50%;
-        animation: floatUp 6s linear infini
+        animation: floatUp 6s linear infinite;
+    }
+    @keyframes floatUp {
+        0% {transform: translateY(0);}
+        100% {transform: translateY(-120vh);}
+    }
 
+    /* Hearts & flowers */
+    .fall {
+        position: absolute;
+        top: -50px;
+        animation: fallDown 5s linear infinite;
+        font-size: 24px;
+    }
+    @keyframes fallDown {
+        0% {transform: translateY(0);}
+        100% {transform: translateY(110vh);}
+    }
+
+    /* Zebra */
+    .zebra {
+        position: absolute;
+        bottom: 0;
+        left: -200px;
+        width: 200px;
+        animation: zebraWalk 10s linear forwards;
+    }
+    @keyframes zebraWalk {
+        0% {left: -200px;}
+        100% {left: 110%;}
+    }
+</style>
+</head>
+<body>
+
+<div class="gift-box" id="giftBox">
+    <div class="gift-lid"></div>
+    <div class="gift-ribbon"></div>
+</div>
+
+<h1 id="message">🎉 Happy Birthday Bhavika 🎉<br>From Prasad ❤️ (Patat)</h1>
+
+<audio id="song" src="https://www.cjoint.com/doc/25_08_08_BaarBaarDinAaye.mp3"></audio>
+
+<script>
+    const giftBox = document.getElementById('giftBox');
+    const message = document.getElementById('message');
+    const song = document.getElementById('song');
+
+    giftBox.addEventListener('click', () => {
+        giftBox.classList.add('open');
+        message.classList.add('show');
+        song.play();
+
+        // Balloons
+        for(let i=0; i<10; i++){
+            let balloon = document.createElement('div');
+            balloon.classList.add('balloon');
+            balloon.style.left = Math.random()*100 + 'vw';
+            balloon.style.background = `hsl(${Math.random()*360},70%,60%)`;
+            balloon.style.animationDelay = i*0.5 + 's';
+            document.body.appendChild(balloon);
+        }
+
+        // Hearts & flowers
+        for(let i=0; i<20; i++){
+            let fall = document.createElement('div');
+            fall.classList.add('fall');
+            fall.innerHTML = Math.random() > 0.5 ? '💖' : '🌸';
+            fall.style.left = Math.random()*100 + 'vw';
+            fall.style.animationDelay = Math.random()*5 + 's';
+            document.body.appendChild(fall);
+        }
+
+        // Zebra
+        let zebra = document.createElement('img');
+        zebra.src = "https://upload.wikimedia.org/wikipedia/commons/7/73/Zebra_animated.gif";
+        zebra.classList.add('zebra');
+        document.body.appendChild(zebra);
+    });
+</script>
+
+</body>
+</html>
