@@ -2,139 +2,73 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Happy Birthday Bhavika 🎉</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Bhavika 🎁</title>
 <style>
     body {
         margin: 0;
         padding: 0;
-        background: linear-gradient(to bottom, #ffdde1, #ee9ca7);
-        font-family: 'Segoe UI', sans-serif;
+        background: linear-gradient(to bottom right, #ff99cc, #ff66b2);
         overflow: hidden;
+        font-family: 'Comic Sans MS', cursive;
         text-align: center;
     }
-    h1 {
-        font-size: 3em;
-        color: white;
-        margin-top: 50px;
-        text-shadow: 0 0 10px #ff6ec4, 0 0 20px #ff6ec4;
-        display: none;
-        animation: fadeIn 2s forwards;
-    }
-    @keyframes fadeIn {
-        from { opacity: 0; transform: scale(0.5); }
-        to { opacity: 1; transform: scale(1); }
-    }
+
     .gift-box {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
         width: 150px;
         height: 150px;
-        background: #ff4e50;
-        margin: 100px auto 0;
-        position: relative;
-        cursor: pointer;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        background: #ff3366;
         border-radius: 10px;
-        transition: transform 0.5s ease;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        cursor: pointer;
     }
-    .gift-box::before {
-        content: "";
+    .gift-lid {
         position: absolute;
-        top: 0;
-        left: 50%;
+        width: 150px;
+        height: 30px;
+        background: #cc0052;
+        top: -30px;
+        left: 0;
+        transition: all 0.6s ease;
+    }
+    .gift-box.open .gift-lid {
+        transform: translateY(-50px) rotate(-20deg);
+        opacity: 0;
+    }
+    .gift-ribbon {
+        position: absolute;
         width: 20px;
         height: 150px;
         background: gold;
-        transform: translateX(-50%);
+        left: 65px;
+        top: 0;
     }
-    .gift-box::after {
-        content: "";
+
+    h1 {
         position: absolute;
-        left: 0;
-        top: 50%;
-        width: 150px;
-        height: 20px;
-        background: gold;
-        transform: translateY(-50%);
+        width: 100%;
+        top: 20%;
+        font-size: 2em;
+        color: white;
+        text-shadow: 2px 2px 5px black;
+        opacity: 0;
+        transition: opacity 1s ease;
     }
-    .lid {
-        width: 150px;
-        height: 40px;
-        background: #ff4e50;
+    h1.show {
+        opacity: 1;
+    }
+
+    /* Balloons */
+    .balloon {
         position: absolute;
-        top: -40px;
-        left: 0;
-        border-radius: 10px 10px 0 0;
-        transition: transform 1s ease;
-    }
-    .gift-box.open .lid {
-        transform: rotate(-45deg) translate(-100px, -100px);
-    }
-    .gift-box.open {
-        transform: scale(0.9);
-    }
-    .zebra {
-        display: none;
-        position: absolute;
-        bottom: 20px;
-        left: -200px;
-        width: 200px;
-        animation: zebraWalk 8s linear infinite;
-    }
-    @keyframes zebraWalk {
-        from { left: -200px; }
-        to { left: 110%; }
-    }
-    .heart, .flower {
-        position: absolute;
-        font-size: 24px;
-        animation: fall 5s linear infinite;
-    }
-    @keyframes fall {
-        0% { transform: translateY(-50px) rotate(0deg); opacity: 1; }
-        100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
-    }
-</style>
-</head>
-<body>
+        bottom: -150px;
+        width: 60px;
+        height: 80px;
+        background: red;
+        border-radius: 50%;
+        animation: floatUp 6s linear infini
 
-<h1 id="message">🎉 Happy 22nd Birthday, Bhavika! 🎂<br>From Prasad (Patat) 💖</h1>
-
-<div class="gift-box" id="gift">
-    <div class="lid"></div>
-</div>
-
-<img src="https://upload.wikimedia.org/wikipedia/commons/0/0f/Zebra_illustration.png" class="zebra" id="zebra" alt="Zebra with balloons">
-
-<audio id="song">
-    <source src="https://www.bensound.com/bensound-music/bensound-happyrock.mp3" type="audio/mpeg">
-</audio>
-
-<script>
-    const gift = document.getElementById("gift");
-    const message = document.getElementById("message");
-    const zebra = document.getElementById("zebra");
-    const song = document.getElementById("song");
-
-    function createFallingEmoji(emoji) {
-        const el = document.createElement("div");
-        el.className = emoji === "💖" ? "heart" : "flower";
-        el.textContent = emoji;
-        el.style.left = Math.random() * 100 + "vw";
-        el.style.animationDuration = (Math.random() * 3 + 2) + "s";
-        document.body.appendChild(el);
-        setTimeout(() => el.remove(), 5000);
-    }
-
-    gift.addEventListener("click", () => {
-        gift.classList.add("open");
-        setTimeout(() => {
-            message.style.display = "block";
-            zebra.style.display = "block";
-            song.play();
-            setInterval(() => createFallingEmoji("💖"), 300);
-            setInterval(() => createFallingEmoji("🌸"), 500);
-        }, 1000);
-    });
-</script>
-
-</body>
-</html>
