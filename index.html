@@ -35,7 +35,7 @@
         border-radius: 10px;
         transition: transform 0.5s ease;
     }
-    .gift-box:before {
+    .gift-box::before {
         content: "";
         position: absolute;
         top: 0;
@@ -45,7 +45,7 @@
         background: gold;
         transform: translateX(-50%);
     }
-    .gift-box:after {
+    .gift-box::after {
         content: "";
         position: absolute;
         left: 0;
@@ -65,10 +65,10 @@
         border-radius: 10px 10px 0 0;
         transition: transform 1s ease;
     }
-    .open .lid {
+    .gift-box.open .lid {
         transform: rotate(-45deg) translate(-100px, -100px);
     }
-    .open .gift-box {
+    .gift-box.open {
         transform: scale(0.9);
     }
     .zebra {
@@ -115,4 +115,26 @@
     const song = document.getElementById("song");
 
     function createFallingEmoji(emoji) {
-        cons
+        const el = document.createElement("div");
+        el.className = emoji === "💖" ? "heart" : "flower";
+        el.textContent = emoji;
+        el.style.left = Math.random() * 100 + "vw";
+        el.style.animationDuration = (Math.random() * 3 + 2) + "s";
+        document.body.appendChild(el);
+        setTimeout(() => el.remove(), 5000);
+    }
+
+    gift.addEventListener("click", () => {
+        gift.classList.add("open");
+        setTimeout(() => {
+            message.style.display = "block";
+            zebra.style.display = "block";
+            song.play();
+            setInterval(() => createFallingEmoji("💖"), 300);
+            setInterval(() => createFallingEmoji("🌸"), 500);
+        }, 1000);
+    });
+</script>
+
+</body>
+</html>
